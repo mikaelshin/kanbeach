@@ -1,0 +1,144 @@
+:root {
+    --yellow-main: #FFB800;
+}
+
+html {
+    font-family: 'Roboto';
+    height: 100%;
+}
+
+.nav {
+    width: 100%;
+}
+
+.nav h1 {
+    margin-left: 16px;
+    display: inline-block;
+    font: medium;
+    color: white;
+}
+
+.nav p {
+    width: 70%;
+    display: inline-block;
+    font-size: large;
+    color: white;
+    text-align: right;    
+}
+
+body {
+    background-image: linear-gradient(to bottom, #005B9D, #9DD5FE);
+}
+
+.columns {
+    display: flex;
+    justify-content: space-between;
+    color: black;
+    margin-top: 32px;
+    width: 0;
+    min-height: none;
+}
+
+.column {
+    background-color: #E9E9E9;
+    box-shadow: 0px 4px 4px 0px #00000040;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 0 16px;
+    min-height: none
+}
+
+.column h3 {
+    font-weight:normal;
+    padding: 16px;
+    margin: 0;
+}
+
+.dropzone {
+    padding: 8px;
+    min-width: 282px;
+}
+
+.card {
+    padding: 16px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.white-line {
+    width: 100%;
+    background-color: white;
+    height: 1px;
+    text-align: left;
+}
+
+.id {
+    background: #E9E9E9;
+    border-radius: 4px;
+    width: 18px;
+    height: 18px;
+    padding: 1px;
+    display: inline;
+}
+
+.content {
+    display: inline;
+    padding-left: 4px;
+}
+
+.user {
+    display: inline;
+    text-align: left;
+    color: #909090;
+}
+
+.time {
+    display: inline;
+    float: right;
+}
+
+.add {
+    margin-top: 16px;
+    width: 30px;
+    height: 30px;
+    font-size: 15pt;
+    color: white;
+    display: flexbox;
+    background: var(--yellow-main);
+    border-radius: 4px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: none;
+    float: right;
+    cursor: pointer;
+}
+
+.first-line {
+    margin-bottom: 16px;
+}
+
+.card-backlog {
+    padding: 16px;
+    background-color: var(--yellow-main);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.card-backlog h3 {
+    font-weight: normal;
+    text-align: center;
+    color: white;
+    margin-top: 0;
+}
+
+.content-backlog  {
+    color: white;
+    display: inline;
+    padding-left: 4px;
+}
+
+.time-backlog {
+    color: white;
+    display: inline;
+    float: right;
+}
