@@ -140,6 +140,9 @@ body {
 .time {
     display: inline;
     float: right;
+    background-color: rgba(240, 240, 240, 1);
+    border-color: #00000000;
+    border-radius: 5px;
 }
 
 .first-line {

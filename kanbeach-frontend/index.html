@@ -32,15 +32,27 @@
                     </div>
                     <div class="second-line">
                         <select class="user">
-                            <option selected value="Lucas">Lucas</option>
+                            <option value="Lucas">Lucas</option>
                             <option value="Willy">Willy</option>
-                            <option value="Shin">Shin</option>
+                            <option selected value="Shin">Shin</option>
                             <option value="Giuliano">Giuliano</option>
                         </select>
-                        <div contentEditable="true" class="time">5h</div>
+                        <select class="time">
+                            <option value="1">1</option>
+                            <option selected value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="8">8</option>
+                        </select>
                     </div>
                 </div>
             </div> 
+        </div>
+        <div id="column_progress" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>In Progress<button id="button_progress" onclick='addCard("column_progress")' class="add"><strong>+</strong></button></h3>
+        </div>
+        <div id="column_done" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>Done<button id="button_done" onclick='addCard("column_done")' class="add"><strong>+</strong></button></h3>
             <div id="2" class="dropzone" draggable="true" ondragstart="drag(event)">
                 <div class="card">
                     <div class="first-line">
@@ -56,13 +68,16 @@
                             <option value="Shin">Shin</option>
                             <option value="Giuliano">Giuliano</option>
                         </select>
-                        <div contentEditable="true" class="time">5h</div>
+                        <select class="time">
+                            <option value="1">1</option>
+                            <option selected value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="8">8</option>
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="column_progress" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <h3>In Progress<button id="button_progress" onclick='addCard("column_progress")' class="add"><strong>+</strong></button></h3>
             <div id="3" class="dropzone" draggable="true" ondragstart="drag(event)">
                 <div class="card">
                     <div class="first-line">
@@ -73,18 +88,21 @@
                     </div>
                     <div class="second-line">
                         <select class="user">
-                            <option value="Lucas">Lucas</option>
+                            <option selected value="Lucas">Lucas</option>
                             <option value="Willy">Willy</option>
-                            <option selected value="Shin">Shin</option>
+                            <option value="Shin">Shin</option>
                             <option value="Giuliano">Giuliano</option>
                         </select>
-                        <div contentEditable="true" class="time">5h</div>
+                        <select class="time">
+                            <option value="1">1</option>
+                            <option selected value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="8">8</option>
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="column_done" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
-            <h3>Done<button id="button_done" onclick='addCard("column_done")' class="add"><strong>+</strong></button></h3>
             <div id="4" class="dropzone"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)">
                 <div class="card">
                     <div class="first-line">
@@ -100,7 +118,13 @@
                             <option value="Shin">Shin</option>
                             <option selected value="Giuliano">Giuliano</option>
                         </select>
-                        <div contentEditable="true" class="time">5h</div>
+                        <select class="time">
+                            <option value="1">1</option>
+                            <option selected value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="8">8</option>
+                        </select>
                     </div>
                 </div>
             </div>
@@ -128,7 +152,7 @@
                     <div class="first-line">
                         <div class="id">${us_id_counter}</div>
                         <div contentEditable="true" class="content">
-                            User Story
+                            Nome da Feature
                         </div>
                     </div>
                     <div class="second-line">
@@ -139,7 +163,13 @@
                             <option value="Giuliano">Giuliano</option>
                             <option value="selecione" selected></option>
                         </select>
-                        <div contentEditable="true" class="time">0h</div>
+                        <select class="time">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="8">8</option>
+                        </select>
                     </div>
                 </div>
             </div>`
