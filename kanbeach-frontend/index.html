@@ -14,94 +14,167 @@
 <body>
     <div class="nav">
         <h1>KanbEACH - Sprint 1</h1>
-        <p>Participantes</p>
     </div>
     <div class="white-line"></div>
     <div class="columns">
-        <div class="dropzone-backlog">
-            <div class="card-backlog" draggable="true">
-                <h3>Backlog</h3>
-                <div class="first-line">
-                    <div class="id">5</div>
-                    <div class="content-backlog">
-                        Teste
-                    </div>
-                </div>
-                <div class="second-line-backlog">
-                    <div class="user-backlog">Mikael Shin</div>
-                    <div class="time-backlog">5h</div>
-                </div>
-            </div>
+        <div id="column_backlog" class="column backlog" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>Backlog<button id="button_backlog" onclick='addCard("column_backlog")' class="add"><strong>+</strong></button></h3>
         </div>
-        <div class="column">
-            <h3>To Do</h3>
-            <div class="dropzone">
-                <div class="card" draggable="true">
+        <div id="column_todo" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>To Do<button id="button_todo" onclick='addCard("column_todo")' class="add"><strong>+</strong></button></h3>
+            <div id="1" class="dropzone" draggable="true" ondragstart="drag(event)">
+                <div class="card">
                     <div class="first-line">
                         <div class="id">1</div>
-                        <div class="content">
+                        <div contentEditable="true" class="content">
                             Criar Boards
                         </div>
                     </div>
                     <div class="second-line">
-                        <div class="user">Lucas Carvalho</div>
-                        <div class="time">5h</div>
+                        <select class="user">
+                            <option selected value="Lucas">Lucas</option>
+                            <option value="Willy">Willy</option>
+                            <option value="Shin">Shin</option>
+                            <option value="Giuliano">Giuliano</option>
+                        </select>
+                        <div contentEditable="true" class="time">5h</div>
                     </div>
                 </div>
-            </div>
-            <div class="dropzone">
-                <div class="card" draggable="true">
+            </div> 
+            <div id="2" class="dropzone" draggable="true" ondragstart="drag(event)">
+                <div class="card">
                     <div class="first-line">
                         <div class="id">2</div>
-                        <div class="content">
+                        <div contentEditable="true" class="content">
                             Criar Cards
                         </div>
                     </div>
                     <div class="second-line">
-                        <div class="user">Giuliano Ortiz</div>
-                        <div class="time">5h</div>
+                        <select class="user">
+                            <option value="Lucas">Lucas</option>
+                            <option selected value="Willy">Willy</option>
+                            <option value="Shin">Shin</option>
+                            <option value="Giuliano">Giuliano</option>
+                        </select>
+                        <div contentEditable="true" class="time">5h</div>
                     </div>
                 </div>
             </div>
-            <button class="add"><strong>+</strong></button>
         </div>
-        <div class="column">
-            <h3>In Progress</h3>
-            <div class="dropzone">
-                <div class="card" draggable="true">
+        <div id="column_progress" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>In Progress<button id="button_progress" onclick='addCard("column_progress")' class="add"><strong>+</strong></button></h3>
+            <div id="3" class="dropzone" draggable="true" ondragstart="drag(event)">
+                <div class="card">
                     <div class="first-line">
                         <div class="id">3</div>
-                        <div class="content">
+                        <div contentEditable="true" class="content">
                             Criar Colunas
                         </div>
                     </div>
                     <div class="second-line">
-                        <div class="user">Mikael Shin</div>
-                        <div class="time">5h</div>
+                        <select class="user">
+                            <option value="Lucas">Lucas</option>
+                            <option value="Willy">Willy</option>
+                            <option selected value="Shin">Shin</option>
+                            <option value="Giuliano">Giuliano</option>
+                        </select>
+                        <div contentEditable="true" class="time">5h</div>
                     </div>
                 </div>
             </div>
-            <button class="add"><strong>+</strong></button>
         </div>
-        <div class="column">
-            <h3>Done</h3>
-            <div class="dropzone">
-                <div class="card" draggable="true">
+        <div id="column_done" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <h3>Done<button id="button_done" onclick='addCard("column_done")' class="add"><strong>+</strong></button></h3>
+            <div id="4" class="dropzone"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)">
+                <div class="card">
                     <div class="first-line">
                         <div class="id">4</div>
-                        <div class="content">
+                        <div contentEditable="true" class="content">
                             Criar UI
-                            <img src="sasuke_bugado.jpg" alt="Minha Figura">       
                         </div>
                     </div>
                     <div class="second-line">
-                        <div class="user">Willy Lee</div>
-                        <div class="time">5h</div>
+                        <select class="user">
+                            <option value="Lucas">Lucas</option>
+                            <option value="Willy">Willy</option>
+                            <option value="Shin">Shin</option>
+                            <option selected value="Giuliano">Giuliano</option>
+                        </select>
+                        <div contentEditable="true" class="time">5h</div>
                     </div>
                 </div>
             </div>
-            <button class="add"><strong>+</strong></button>
+        </div>
+        <div id="column_deletar" class="trash" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+            <img src="./trash.png" style="height: auto;">
+            <div id="5" class="dropzone"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)">
+            </div>
         </div>
     </div>
 </body>
+<script>
+    let us_id_counter = 4;
+
+    function populateUsers()
+    {
+
+    }
+
+    function addCard(id)
+    {
+        us_id_counter++;
+        let str = `<div id="${us_id_counter}" class="dropzone" draggable="true" ondragstart="drag(event)" ondrop="drop(event)">
+                <div class="card">
+                    <div class="first-line">
+                        <div class="id">${us_id_counter}</div>
+                        <div contentEditable="true" class="content">
+                            User Story
+                        </div>
+                    </div>
+                    <div class="second-line">
+                        <select class="user">
+                            <option value="Lucas">Lucas</option>
+                            <option value="Willy">Willy</option>
+                            <option value="Shin">Shin</option>
+                            <option value="Giuliano">Giuliano</option>
+                            <option value="selecione" selected></option>
+                        </select>
+                        <div contentEditable="true" class="time">0h</div>
+                    </div>
+                </div>
+            </div>`
+
+            col = document.getElementById(id);
+            col.innerHTML+= str;
+    }
+
+    // Gratos ao W3S e Mozilla
+    function allowDrop(ev) 
+    {
+        ev.preventDefault();
+    }
+
+    function drag(ev) 
+    {
+        ev.dataTransfer.setData("drop", ev.target.id);
+    }
+
+    function drop(ev) 
+    {
+        if(ev.target.className != "column")
+            return;
+
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("drop");
+        ev.target.appendChild(document.getElementById(data));
+    }
+
+    function dropDelete(ev) 
+    {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("drop");
+        el = document.getElementById(data)
+        el.remove()
+    }
+</script>
 </html>

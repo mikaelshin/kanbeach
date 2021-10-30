@@ -1,7 +1,7 @@
 /* -------------- Geral -------------- */
 
 :root {
-    --yellow-main: #FFB800;
+    --yellow-main: #FF9800;
 }
 
 html {
@@ -10,7 +10,10 @@ html {
 }
 
 body {
-    background-image: linear-gradient(to bottom, #005B9D, #9DD5FE);
+    background-image: linear-gradient(to bottom, #005B9D, #ff3355);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 100px;
 }
 
 /* -------------- Parte de cima -------------- */
@@ -56,22 +59,26 @@ body {
 
 .column {
     background-color: #E9E9E9;
-    box-shadow: 0px 4px 4px 0px #00000040;
+    box-shadow: 0px 4px 4px 0px #c49d9d40;
     border-radius: 8px;
     padding: 16px;
     margin: 0 16px;
-    min-height: none
+    min-height: none;
+    padding-bottom: 120px;
 }
 
 .column h3 {
     font-weight:normal;
     padding: 16px;
     margin: 0;
+    min-width: 500;
+    min-width: 282px;
 }
 
 .dropzone {
-    padding: 8px;
+    padding: 0px;
     min-width: 282px;
+    margin: 10px;
 }
 
 /* -------------- Botão -------------- */
@@ -89,15 +96,22 @@ body {
     border: none;
     float: right;
     cursor: pointer;
+    position: static;
+    top: 0px;
+    margin: 0;
 }
 
+
 /* -------------- Cards e seu conteúdo -------------- */
+
+
 
 .card {
     padding: 16px;
     background-color: #FFFFFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
+    margin: 0px;
 }
 
 .id {
@@ -118,6 +132,9 @@ body {
     display: inline;
     text-align: left;
     color: #909090;
+    background-color: rgba(240, 240, 240, 1);
+    border-color: #00000000;
+    border-radius: 5px;
 }
 
 .time {
@@ -129,20 +146,23 @@ body {
     margin-bottom: 16px;
 }
 
-/* -------------- Card de Backlog e seu conteúdo --------------*/
-
-.dropzone-backlog {
-    padding: 8px;
-    min-width: 282px;
-    margin: -8px 80px 0 50px;
-}
-
-.card-backlog {
-    padding: 16px;
-    background-color: var(--yellow-main);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+.trash
+{
+    background-color: #E9E9E9;
+    box-shadow: 0px 4px 4px 0px #00000040;
     border-radius: 8px;
+    padding: 16px;
+    margin: 0 16px;
+    width: 50px;
+    height: 50px;
 }
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* -------------- Card de Backlog e seu conteúdo --------------*/
 
 .card-backlog h3 {
     font-weight: normal;

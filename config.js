@@ -1,6 +1,6 @@
 let config_servidor =
 {
-    PORT: 8001
+    PORT: 8002
 }
 
 let config_recursos = 
