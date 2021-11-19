@@ -1,5 +1,7 @@
 # EACH 2021 - Engenharia de Sistemas de Informação
 
+KanbEACH é um Kanban Board criado pelos alunos da EACH USP. 
+
 ## Preparar o projeto
 
     # SSH
