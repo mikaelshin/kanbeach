@@ -1,4 +1,4 @@
-# EACH - ESI 2021
+# EACH 2021 - Engenharia de Sistemas de Informação
 
 ## Preparar o projeto
 
