@@ -5,9 +5,10 @@ let config_servidor =
 
 let config_recursos = 
 {
-    RECURSOS: "/kanbeach-frontend/recursos", 
+    RECURSOS : "/kanbeach-frontend/recursos", 
     HTML_MAIN: "/kanbeach-frontend/index.html",
-    CSS_MAIN: "/kanbeach-frontend/style.css"
+    CSS_MAIN : "/kanbeach-frontend/style.css",
+    BOARDS   : "/kanbeach-frontend/recursos/boards"  
 };
 
 vars = Object.keys(config_recursos)

@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> 
 </head>
-<body>
+<body id="body">
     <div class="nav">
         <h1>KanbEACH - Sprint 1</h1>
     </div>
@@ -103,31 +103,6 @@
                     </div>
                 </div>
             </div>
-            <div id="4" class="dropzone"  draggable="true" ondragstart="drag(event)" ondrop="drop(event)">
-                <div class="card">
-                    <div class="first-line">
-                        <div class="id">4</div>
-                        <div contentEditable="true" class="content">
-                            Criar UI
-                        </div>
-                    </div>
-                    <div class="second-line">
-                        <select class="user">
-                            <option value="Lucas">Lucas</option>
-                            <option value="Willy">Willy</option>
-                            <option value="Shin">Shin</option>
-                            <option selected value="Giuliano">Giuliano</option>
-                        </select>
-                        <select class="time">
-                            <option value="1">1</option>
-                            <option selected value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                            <option value="8">8</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="column_deletar" class="trash" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
             <img src="./trash.png" style="height: auto;">
@@ -137,6 +112,7 @@
     </div>
 </body>
 <script>
+    let boards = null;
     let us_id_counter = 4;
 
     function populateUsers()
@@ -206,5 +182,56 @@
         el = document.getElementById(data)
         el.remove()
     }
+
+    function loadBoard(board)
+    {
+        document.getElementById("body").innerHTML = board
+    }
+
+    function getBoard()
+    {
+        return document.getElementById("body").innerHTML
+    }
+
+    const STOREBOARD_URL = "/storeboard"
+    const GETBOARDS_URL  = "/getboards"
+
+    //Ex: storeBoard(getBoard(), "main_board")
+    async function storeBoard(board, key)
+    {
+        data = 
+        {
+            board: board,
+            key: key
+        }
+
+        await postServer(STOREBOARD_URL, data)
+    }
+
+    async function getBoards()
+    {
+        boards = await queryServer(GETBOARDS_URL);
+        loadBoard(boards[0].board)
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////
+    // Conexao servidor
+
+    async function queryServer(url)
+    {
+        let response = await fetch(url);
+        data         = await response.json(); 
+        return data;
+    };
+
+    async function postServer(url, data)
+    {
+        let options  = {method: 'POST', body: JSON.stringify(data), headers: {'Content-Type': 'application/json'}};
+        let response = await fetch(url, options);
+        data         = await response.json();
+        return data;
+    };
+
+    getBoards()
 </script>
 </html>
