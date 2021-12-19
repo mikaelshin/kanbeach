@@ -12,97 +12,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> 
 </head>
 <body id="body">
-    <div class="nav">
-        <h1>KanbEACH - Sprint 1</h1>
+    <div id="board-list">
     </div>
-    <div class="white-line"></div>
+    <div class="nav">
+        <h1>KanbEACH - Sprint 2</h1>
+        <button class="save-button" onClick=storeCurrentBoard()>Salvar</button>
+        <button class="save-button" onClick=turnVisible()>Board</button>
+    </div>
+    <div class="white-line"></div> 
     <div class="columns">
         <div id="column_backlog" class="column backlog" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h3>Backlog<button id="button_backlog" onclick='addCard("column_backlog")' class="add"><strong>+</strong></button></h3>
         </div>
         <div id="column_todo" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h3>To Do<button id="button_todo" onclick='addCard("column_todo")' class="add"><strong>+</strong></button></h3>
-            <div id="1" class="dropzone" draggable="true" ondragstart="drag(event)">
-                <div class="card">
-                    <div class="first-line">
-                        <div class="id">1</div>
-                        <div contentEditable="true" class="content">
-                            Criar Boards
-                        </div>
-                    </div>
-                    <div class="second-line">
-                        <select class="user">
-                            <option value="Lucas">Lucas</option>
-                            <option value="Willy">Willy</option>
-                            <option selected value="Shin">Shin</option>
-                            <option value="Giuliano">Giuliano</option>
-                        </select>
-                        <select class="time">
-                            <option value="1">1</option>
-                            <option selected value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                            <option value="8">8</option>
-                        </select>
-                    </div>
-                </div>
-            </div> 
         </div>
         <div id="column_progress" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h3>In Progress<button id="button_progress" onclick='addCard("column_progress")' class="add"><strong>+</strong></button></h3>
         </div>
         <div id="column_done" class="column" ondrop="drop(event)" ondragover="allowDrop(event)">
             <h3>Done<button id="button_done" onclick='addCard("column_done")' class="add"><strong>+</strong></button></h3>
-            <div id="2" class="dropzone" draggable="true" ondragstart="drag(event)">
-                <div class="card">
-                    <div class="first-line">
-                        <div class="id">2</div>
-                        <div contentEditable="true" class="content">
-                            Criar Cards
-                        </div>
-                    </div>
-                    <div class="second-line">
-                        <select class="user">
-                            <option value="Lucas">Lucas</option>
-                            <option selected value="Willy">Willy</option>
-                            <option value="Shin">Shin</option>
-                            <option value="Giuliano">Giuliano</option>
-                        </select>
-                        <select class="time">
-                            <option value="1">1</option>
-                            <option selected value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                            <option value="8">8</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-            <div id="3" class="dropzone" draggable="true" ondragstart="drag(event)">
-                <div class="card">
-                    <div class="first-line">
-                        <div class="id">3</div>
-                        <div contentEditable="true" class="content">
-                            Criar Colunas
-                        </div>
-                    </div>
-                    <div class="second-line">
-                        <select class="user">
-                            <option selected value="Lucas">Lucas</option>
-                            <option value="Willy">Willy</option>
-                            <option value="Shin">Shin</option>
-                            <option value="Giuliano">Giuliano</option>
-                        </select>
-                        <select class="time">
-                            <option value="1">1</option>
-                            <option selected value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="5">5</option>
-                            <option value="8">8</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
         </div>
         <div id="column_deletar" class="trash" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
             <img src="./trash.png" style="height: auto;">
@@ -112,6 +41,7 @@
     </div>
 </body>
 <script>
+    let taskCounter = 0;
     let boards = null;
     let us_id_counter = 4;
 
@@ -124,7 +54,7 @@
     {
         us_id_counter++;
         let str = `<div id="${us_id_counter}" class="dropzone" draggable="true" ondragstart="drag(event)" ondrop="drop(event)">
-                <div class="card">
+                <div class="card" id="card-${us_id_counter}"> 
                     <div class="first-line">
                         <div class="id">${us_id_counter}</div>
                         <div contentEditable="true" class="content">
@@ -147,13 +77,36 @@
                             <option value="8">8</option>
                         </select>
                     </div>
+                    <div class="button-task-div">
+                        <button class="button-task" onclick='addTask("card-${us_id_counter}")'><strong>+</strong></button>
+                    </div>    
                 </div>
             </div>`
 
-            col = document.getElementById(id);
-            col.innerHTML+= str;
+        col = document.getElementById(id);
+        col.innerHTML+= str;
     }
 
+    function addTask(id) {
+        
+        taskCounter++;
+
+        let str = 
+            `<div id="${id}-${taskCounter}">
+                <input type="checkbox"></input>
+                <input class="input-task"></input>
+                <button class="delete" onclick='remove("${id}-${taskCounter}")'><strong>-</strong></button>
+            </div>`
+
+        col = document.getElementById(id);
+        col.innerHTML+= str;
+    }
+
+    function remove(id) {
+        
+        el = document.getElementById(id)
+        el.remove()
+    }
     // Gratos ao W3S e Mozilla
     function allowDrop(ev) 
     {
@@ -183,9 +136,12 @@
         el.remove()
     }
 
-    function loadBoard(board)
+    function loadBoard(board, id)
     {
+        console.log(id)
+        document.getElementById(id).innerHTML = "";
         document.getElementById("body").innerHTML = board
+        getBoards()
     }
 
     function getBoard()
@@ -208,10 +164,26 @@
         await postServer(STOREBOARD_URL, data)
     }
 
+    function storeCurrentBoard() 
+    {
+        let board = getBoard()
+        storeBoard(board, "main1")
+    } 
+
     async function getBoards()
     {
+        let listBoards = document.getElementById("board-list");
         boards = await queryServer(GETBOARDS_URL);
-        loadBoard(boards[0].board)
+        
+        for (let i = 0; i < boards.length; i++) 
+            listBoards.innerHTML += `<div class="board-itens" id="board-item-${i}-${boards[i].key}"> 
+                <label id="board-key-${i}-${boards[i].key}" onClick="loadBoard(boards[${i}].board, 'board-item-${i}-${boards[i].key}')">${boards[i].key}</label>
+                <button class="delete" onClick='remove("board-item-${i}-${boards[i].key}")'>
+                    -
+                </button>
+            </div>`
+            
+        // loadBoard(boards[0].board)
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -232,6 +204,21 @@
         return data;
     };
 
+    let saveButtonStatus = 0;
+
+    function turnVisible() {
+        
+        if (saveButtonStatus == 0) {
+            document.getElementById("board-list").style.visibility = "visible";
+            saveButtonStatus = 1;
+        } else {
+            document.getElementById("board-list").style.visibility = "hidden";
+            saveButtonStatus = 0;
+        }
+    }
+
+    
     getBoards()
+
 </script>
 </html>

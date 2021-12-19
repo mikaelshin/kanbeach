@@ -46,15 +46,16 @@ server.get('/getboards', (req, res) =>
     fs.readdir(config.BOARDS, (err, data) => 
     {
         let boards = [];
-    
+
         for (let i = 0; i < data.length; i++)
         {
-           
-            fs.readFile(config.BOARDS + "/" + data[i], (err, data) =>
+            fs.readFile(config.BOARDS + "/" + data[i], (err, info) =>
             {
-                boards.push(JSON.parse(data))
-                if(i == boards.length-1)
+                boards.push(JSON.parse(info))
+
+                if (boards.length == data.length)
                 {
+                    boards = boards.sort()
                     res.send(boards)
                     res.end()
                 }
