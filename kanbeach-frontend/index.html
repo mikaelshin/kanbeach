@@ -15,9 +15,9 @@
     <div id="board-list">
     </div>
     <div class="nav">
-        <h1>KanbEACH - Sprint 2</h1>
+        <input id="boardTitle" contentEditable="true" spellcheck="false" maxlength="40">
         <button class="save-button" onClick=storeCurrentBoard()>Salvar</button>
-        <button class="save-button" onClick=turnVisible()>Board</button>
+        <button class="save-button" onClick=toggleBoardVisibility()>Board</button>
     </div>
     <div class="white-line"></div> 
     <div class="columns">
@@ -94,7 +94,7 @@
         let str = 
             `<div id="${id}-${taskCounter}">
                 <input type="checkbox"></input>
-                <input class="input-task"></input>
+                <input class="input-task" maxlength="25"></input>
                 <button class="delete" onclick='remove("${id}-${taskCounter}")'><strong>-</strong></button>
             </div>`
 
@@ -107,6 +107,7 @@
         el = document.getElementById(id)
         el.remove()
     }
+    
     // Gratos ao W3S e Mozilla
     function allowDrop(ev) 
     {
@@ -136,11 +137,20 @@
         el.remove()
     }
 
+    function getBoardTitle()
+    {
+        return document.getElementById("boardTitle").value
+    }
+
+    function setBoardTitle(title)
+    {
+        document.getElementById("boardTitle").value = title
+    }
+
     function loadBoard(board, id)
     {
-        console.log(id)
-        document.getElementById(id).innerHTML = "";
-        document.getElementById("body").innerHTML = board
+        document.getElementById("body").innerHTML = board.board
+        setBoardTitle(board.key)
         getBoards()
     }
 
@@ -151,6 +161,7 @@
 
     const STOREBOARD_URL = "/storeboard"
     const GETBOARDS_URL  = "/getboards"
+    const DELBOARDS_URL  = "/delboard"
 
     //Ex: storeBoard(getBoard(), "main_board")
     async function storeBoard(board, key)
@@ -164,25 +175,36 @@
         await postServer(STOREBOARD_URL, data)
     }
 
+    async function deleteBoard(id, board_key)
+    {
+        remove(id)
+        board_key = 1
+        await postServer(DELBOARDS_URL, {key: board_key})
+    }
+
     function storeCurrentBoard() 
     {
         let board = getBoard()
-        storeBoard(board, "main1")
+        let title = getBoardTitle()
+        storeBoard(board, title)
     } 
 
     async function getBoards()
     {
+        toggleBoardVisibility("hidden")
+        document.getElementById("board-list").innerHTML = "";
         let listBoards = document.getElementById("board-list");
         boards = await queryServer(GETBOARDS_URL);
         
         for (let i = 0; i < boards.length; i++) 
             listBoards.innerHTML += `<div class="board-itens" id="board-item-${i}-${boards[i].key}"> 
-                <label id="board-key-${i}-${boards[i].key}" onClick="loadBoard(boards[${i}].board, 'board-item-${i}-${boards[i].key}')">${boards[i].key}</label>
-                <button class="delete" onClick='remove("board-item-${i}-${boards[i].key}")'>
+                <label id="board-key-${i}-${boards[i].key}" onClick="loadBoard(boards[${i}], 'board-item-${i}-${boards[i].key}')">${boards[i].key}</label>
+                <button class="boardDeleteButton" class="delete" onClick='deleteBoard("board-item-${i}-${boards[i].key}", "${boards[i].key}")'>
                     -
                 </button>
             </div>`
             
+        
         // loadBoard(boards[0].board)
     }
 
@@ -204,21 +226,23 @@
         return data;
     };
 
-    let saveButtonStatus = 0;
+    let saveButtonStatus = 1;
 
-    function turnVisible() {
-        
-        if (saveButtonStatus == 0) {
+    function toggleBoardVisibility(state) {
+
+        if (state == "visible" || (state === undefined && saveButtonStatus == 0)) {
             document.getElementById("board-list").style.visibility = "visible";
             saveButtonStatus = 1;
-        } else {
+        } else if (state == "hidden" || (state === undefined && saveButtonStatus == 1))
+        {
             document.getElementById("board-list").style.visibility = "hidden";
             saveButtonStatus = 0;
         }
     }
 
-    
+    toggleBoardVisibility("hidden")
     getBoards()
+    setBoardTitle("New Board")
 
 </script>
 </html>

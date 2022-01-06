@@ -2,7 +2,9 @@
 // Imports
 const { Console } = require("console");
 const express = require("express");
-const fs      = require('fs')
+const res = require("express/lib/response");
+const fs      = require('fs');
+const { Server } = require("http");
 global.config = require("./config.js");
 
 ///////////////////////////////////////////////////////////////////
@@ -18,7 +20,12 @@ server.use(express.static(config.RECURSOS));
 
 function storeBoard(data)
 {
-    fs.writeFile(config.BOARDS + "/" + data.key + ".json", JSON.stringify(data), (err)=> {console.log("storeBoard(data) error, failed to write data to file.")})
+    fs.writeFileSync(config.BOARDS + "/" + data.key + ".json", JSON.stringify(data), {flag:'w'})
+}
+
+function deleteBoard(data)
+{
+    fs.unlink(config.BOARDS + "/" + data.key + ".json")
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -37,6 +44,13 @@ server.get('/style.css', (req, res) =>
 server.post('/storeboard', (req, res) => 
 {
     storeBoard(req.body)
+    res.send({})
+    res.end();
+});
+
+server.post('/delboard', (req, res) =>
+{
+    deleteBoard(req.body)
     res.send({})
     res.end();
 });
