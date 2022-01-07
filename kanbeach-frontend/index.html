@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body id="body">
     <div id="board-list">
@@ -62,14 +63,14 @@
                         </div>
                     </div>
                     <div class="second-line">
-                        <select class="user">
+                        <select id="${us_id_counter}-points" class="user">
                             <option value="Lucas">Lucas</option>
                             <option value="Willy">Willy</option>
                             <option value="Shin">Shin</option>
                             <option value="Giuliano">Giuliano</option>
                             <option value="selecione" selected></option>
                         </select>
-                        <select class="time">
+                        <select id="${us_id_counter}-time" class="time">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -84,7 +85,7 @@
             </div>`
 
         col = document.getElementById(id);
-        col.innerHTML+= str;
+        $(`#${id}`).append($.parseHTML(str))
     }
 
     function addTask(id) {
@@ -93,13 +94,13 @@
 
         let str = 
             `<div id="${id}-${taskCounter}">
-                <input type="checkbox"></input>
-                <input class="input-task" maxlength="25"></input>
+                <input id="${id}-${taskCounter}-checkbox" type="checkbox"></input>
+                <input id="${id}-${taskCounter}-input" class="input-task" maxlength="25"></input>
                 <button class="delete" onclick='remove("${id}-${taskCounter}")'><strong>-</strong></button>
             </div>`
 
         col = document.getElementById(id);
-        col.innerHTML+= str;
+        $(`#${id}`).append($.parseHTML(str))
     }
 
     function remove(id) {
@@ -150,6 +151,8 @@
     function loadBoard(board, id)
     {
         document.getElementById("body").innerHTML = board.board
+        loadValues(board.objs)
+        us_id_counter = board.us_id_counter
         setBoardTitle(board.key)
         getBoards()
     }
@@ -166,10 +169,14 @@
     //Ex: storeBoard(getBoard(), "main_board")
     async function storeBoard(board, key)
     {
+        objs = getValues()
+
         data = 
         {
             board: board,
-            key: key
+            key: key,
+            objs: objs,
+            us_id_counter: us_id_counter
         }
 
         await postServer(STOREBOARD_URL, data)
@@ -178,15 +185,17 @@
     async function deleteBoard(id, board_key)
     {
         remove(id)
-        board_key = 1
         await postServer(DELBOARDS_URL, {key: board_key})
+        getBoards()
     }
 
     function storeCurrentBoard() 
     {
+
         let board = getBoard()
         let title = getBoardTitle()
         storeBoard(board, title)
+        getBoards()
     } 
 
     async function getBoards()
@@ -206,6 +215,47 @@
             
         
         // loadBoard(boards[0].board)
+    }
+    
+    function getValues()
+    {
+        let objs = $('*');
+
+        let obj_ids  = []
+        let obj_vals = []
+
+        for(let i = 0; i < objs.length; i++)
+        {
+            if((objs[i].id != "") && (objs[i].id != null) && (objs[i].id != undefined))
+            {
+                obj_ids.push(objs[i].id)
+                if(objs[i].id.includes("checkbox"))
+                    obj_vals.push(objs[i].checked)
+                else
+                     obj_vals.push(objs[i].value)
+            }
+        }
+
+        data = 
+        {
+            obj_ids: obj_ids,
+            obj_vals: obj_vals
+        }
+
+        return data
+    }
+
+    function loadValues(objs)
+    {
+        console.log(objs)
+        for(let i = 0; i < objs.obj_ids.length; i++)
+        {
+            if(objs.obj_ids[i].includes("checkbox"))
+                document.getElementById(objs.obj_ids[i]).checked = objs.obj_vals[i]
+            else
+                document.getElementById(objs.obj_ids[i]).value = objs.obj_vals[i]
+ 
+        }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////

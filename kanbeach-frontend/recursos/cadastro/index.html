@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title>Cadastro</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="cadastro/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/vendor/animate/animate.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/vendor/select2/select2.min.css">
 <!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css"> 
+	<link rel="stylesheet" type="text/css" href="cadastro/css/util.css">
+	<link rel="stylesheet" type="text/css" href="cadastro/css/main.css"> 
 <!--===============================================================================================-->
 </head>
 <body>
@@ -34,17 +34,26 @@
 			<div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
 				<form class="login100-form validate-form">
 					<span class="login100-form-title p-b-49">
-						Login
+						Cadastro
 					</span>
-
+					<div class="wrap-input100 validate-input m-b-23" data-validate = "Nome obrigatório">
+						<span class="label-input100">Nome</span>
+						<input class="input100" type="text" name="username" placeholder="Escreva seu Nome">
+						<span class="focus-input100" data-symbol="&#xf206;"></span>
+					</div>
 					<div class="wrap-input100 validate-input m-b-23" data-validate = "Email obrigatório">
 						<span class="label-input100">Email</span>
 						<input class="input100" type="text" name="username" placeholder="Escreva seu email">
 						<span class="focus-input100" data-symbol="&#xf206;"></span>
 					</div>
-
 					<div class="wrap-input100 validate-input" data-validate="Senha obrigatória">
 						<span class="label-input100">Senha</span>
+						<input class="input100" type="password" name="pass" placeholder="Escreva sua senha">
+						<span class="focus-input100" data-symbol="&#xf190;"></span>
+					</div>
+					<br/>
+					<div class="wrap-input100 validate-input" data-validate="Senha obrigatória">
+						<span class="label-input100">Repetir senha</span>
 						<input class="input100" type="password" name="pass" placeholder="Escreva sua senha">
 						<span class="focus-input100" data-symbol="&#xf190;"></span>
 					</div>
@@ -55,21 +64,9 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Login
+								CADASTRO
 							</button>
 						</div>
-					</div>
-
-					<div class="text-right p-t-8 p-b-31">
-						<a href="#">
-							Esqueceu sua senha? Clique aqui
-						</a>
-					</div>
-				
-					<div class="flex-col-c p-t-155">
-                        	<a href="#" class="txt2">
-							Cadastrar
-						</a>
 					</div>
 				</form>
 			</div>
@@ -80,21 +77,21 @@
 	<div id="dropDownSelect1"></div>
 	
 <!--===============================================================================================-->
-	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="cadastro/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/animsition/js/animsition.min.js"></script>
+	<script src="cadastro/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/bootstrap/js/popper.js"></script>
-	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="cadastro/vendor/bootstrap/js/popper.js"></script>
+	<script src="cadastro/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/select2/select2.min.js"></script>
+	<script src="cadastro/vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/daterangepicker/moment.min.js"></script>
-	<script src="vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="cadastro/vendor/daterangepicker/moment.min.js"></script>
+	<script src="cadastro/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="vendor/countdowntime/countdowntime.js"></script>
+	<script src="cadastro/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+	<script src="cadastro/js/main.js"></script>
 
 </body>
 </html>

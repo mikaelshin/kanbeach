@@ -8,7 +8,9 @@ let config_recursos =
     RECURSOS : "/kanbeach-frontend/recursos", 
     HTML_MAIN: "/kanbeach-frontend/index.html",
     CSS_MAIN : "/kanbeach-frontend/style.css",
-    BOARDS   : "/kanbeach-frontend/recursos/boards"  
+    BOARDS   : "/kanbeach-frontend/recursos/boards",
+    LOGIN    : "/kanbeach-frontend/recursos/Login/index.html",
+    CADASTRO : "/kanbeach-frontend/recursos/cadastro/index.html"
 };
 
 vars = Object.keys(config_recursos)

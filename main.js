@@ -25,15 +25,26 @@ function storeBoard(data)
 
 function deleteBoard(data)
 {
-    fs.unlink(config.BOARDS + "/" + data.key + ".json")
+    fs.unlink(config.BOARDS + "/" + data.key + ".json", (err) => {})
 }
 
 ///////////////////////////////////////////////////////////////////
 // Rotas
 
+server.get('/main', (req, res) => 
+{
+    //res.sendFile(config.HTML_MAIN);
+    res.sendFile(config.HTML_MAIN);
+});
+
 server.get(['/index.html', '/'], (req, res) => 
 {
-    res.sendFile(config.HTML_MAIN);
+    res.sendFile(config.LOGIN);
+});
+
+server.get('/cadastro', (req, res) => 
+{
+    res.sendFile(config.CADASTRO);
 });
 
 server.get('/style.css', (req, res) => 
