@@ -33,7 +33,6 @@ function deleteBoard(data)
 
 server.get('/main', (req, res) => 
 {
-    //res.sendFile(config.HTML_MAIN);
     res.sendFile(config.HTML_MAIN);
 });
 
